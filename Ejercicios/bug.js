@@ -1,3 +1,5 @@
+//Ejercicio 2. Arreglar bug
+
 //El bug estaba en la iteración con el índice
 //decía que mientras el índice fuera menor o igual a la longitud de la lista
 //cuando la iteración llega la punto en que índice es igual a la longitud
