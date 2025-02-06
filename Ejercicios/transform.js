@@ -33,18 +33,8 @@ const datos = [
 const desarrolladoresJavascript = datos.filter(desarrollador => 
     desarrollador.habilidades.includes('JavaScript'));
 
-
-
-const nombresProyectos = datos.map(desarrollador => ({ ...desarrollador.proyectos.nombre}));
-
-
-/* const nombresProyectossss = datos.map(desarrollador => {
-    const losProyectos = datos.filter(desarrollador => 
-        desarrollador.proyectos);
-        return { ...losProyectos.nombre }
-    });
-*/
-
+const listaPlanaProyectos = datos.map(desarrollador => desarrollador.proyectos).flat();
+const nombresProyectos = listaPlanaProyectos.map(proyecto => proyecto.nombre)
 
 console.log(desarrolladoresJavascript);
 console.log(nombresProyectos);
