@@ -31,7 +31,7 @@ const playlist = () => {
   const createPlaylist = (playlistName) => {
     const playlist = {
       name: playlistName,
-      songs: [{ title: 'Song Title', artist: 'Song Artist', genre: 'Song Genre', duration: 180, favorite: false }]
+      songs: [{ title: '', artist: '', genre: '', duration: 0, favorite: false }]
     };
     playlists.push(playlist);
   };
@@ -61,6 +61,7 @@ const playlist = () => {
   const addSongToPlaylist = (playlistName, song) => {
     //1.Buscamos que exista la playlist que hemos pasado como parámetro
     const playlist = playlists.find(playlist => playlist.name === playlistName);
+    // const playlist = playlists.find(({ name }) => name === playlistName); // así es desestructurado
 
     //2. Si es que no existe, lanzamos un error
     if (!playlist) {
@@ -98,7 +99,32 @@ const playlist = () => {
    * @param {string} playlistName - The name of the playlist containing the song.
    * @param {string} title - The title of the song to mark as a favorite.
    */
-  const favoriteSong = (playlistName, title) => {};
+  const favoriteSong = (playlistName, title) => {
+    //1. Buscamos la playlist donde quieren marcar la canción favorita
+    const playlist = playlists.find(playlist => playlist.name === playlistName);
+
+    //2. Si es que no se encuentra la playlist lanzamos error
+    if (!playlist) {
+      throw new Error('Playlist not found')
+    };
+
+    //3. Ahora buscamos que la canción esté en esa playlist
+    const song = playlist.songs.find(song => song.title === title);
+
+    //4. Si no la encontramos, lanzamos error
+    if (!song) {
+      throw new Error('Song not found')
+    }
+
+    //5. Crear una nueva lista con la canción actualizada en estado favorito true
+    const listUpdatedWithSong = playlist.songs.map(song => 
+      song.title === title ? { ...song, favorite: true} : song);
+
+    //6. Debemos actualizar la playlist ahora con la canción actualizada
+    const playlistUpdated = { ...playlist, songs: listUpdatedWithSong};
+
+    return playlistUpdated;
+  };
 
   /**
    * Sorts songs in a specific playlist by a given criterion (title, artist, or duration).
@@ -112,8 +138,5 @@ const playlist = () => {
   return { createPlaylist, addSongToPlaylist, removeSongFromPlaylist, sortSongs, getAllPlaylists, removePlaylist, favoriteSong };
 };
 
-//const playlist = () => {}
-
 
 export default playlist;
-
