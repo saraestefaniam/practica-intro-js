@@ -49,7 +49,7 @@ const playlist = () => {
    * @param {string} playlistName - The name of the playlist to remove.
    */
     const removePlaylist = (playlistName) => {
-      playlists = playlists.filter(playlist.name !== playlistName);
+      playlists = playlists.filter(playlist => playlist.name !== playlistName);
     };
 
   /**
@@ -59,7 +59,19 @@ const playlist = () => {
    * @throws {Error} If the playlist is not found.
    */
   const addSongToPlaylist = (playlistName, song) => {
-    
+    //1.Buscamos que exista la playlist que hemos pasado como parámetro
+    const playlist = playlists.find(playlist => playlist.name === playlistName);
+
+    //2. Si es que no existe, lanzamos un error
+    if (!playlist) {
+      throw new Error('The playlist is not found');
+    };
+
+    //3.Si existe creamos la variable newSong (la que estamos agregando a la lista) 
+    // y la guardamos
+    const newSong = { ...song, favorite: false }
+    playlist.songs.push(newSong);
+
   };
 
   /**
@@ -69,8 +81,17 @@ const playlist = () => {
    * @throws {Error} If the playlist or song is not found.
    */
   const removeSongFromPlaylist = (playlistName, title) => {
-    playlist = playlistName.filter(playlist.title !== title);
+    //1. Buscamos la playlist "playlistName" (igual que como hicimos con el método addSong)
+    const playlist = playlists.find(playlist => playlist.name === playlistName);
+
+    //2. Nos aseguramos de que exista, sino, lanzamos error
+    if (!playlist || !title) {
+      throw new Error('Playlist or song is not found');
+    };
+    //3. Filtramos las canciones de la playlist que no sean la que queremos remover
+    playlist.songs = playlist.songs.filter(song => song.title !== title);
   };
+
 
   /**
    * Marks a song as a favorite or removes the favorite status.
