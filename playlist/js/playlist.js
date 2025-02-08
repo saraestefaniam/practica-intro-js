@@ -68,23 +68,14 @@ const playlist = () => {
       throw new Error('The playlist is not found');
     };
 
-    //3.Si existe creamos la variable newSong (la que estamos agregando a la lista) 
-    // y la guardamos
+    //3. Si existe, ahora debemos crear una nueva lista con la nueva canción
+    //y devovler esta lista nueva
     const newSong = { ...song, favorite: false }
-    playlist.songs.push(newSong);
-
+    const listWithNewSong = { ...playlist, songs: [ ...playlist.songs, newSong] };
+    return listWithNewSong;
   };
 
   /**
-   * Removes a song from a specific playlist.
-   * @param {string} playlistName - The name of the playlist to remove the song from.
-   * @param {string} title - The title of the song to remove.
-   * @throws {Error} If the playlist or song is not found.
-   */
-  const removeSongFromPlaylist = (playlistName, title) => {
-    //1. Buscamos la playlist "playlistName" (igual que como hicimos con el método addSong)
-    const playlist = playlists.find(playlist => playlist.name === playlistName);
-
     //2. Nos aseguramos de que exista, sino, lanzamos error
     if (!playlist || !title) {
       throw new Error('Playlist or song is not found');
@@ -137,6 +128,5 @@ const playlist = () => {
 
   return { createPlaylist, addSongToPlaylist, removeSongFromPlaylist, sortSongs, getAllPlaylists, removePlaylist, favoriteSong };
 };
-
 
 export default playlist;
