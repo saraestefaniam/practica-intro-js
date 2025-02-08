@@ -135,16 +135,13 @@ const playlist = () => {
     //4. Si no la encontramos, lanzamos error
     if (!song) {
       throw new Error('Song not found')
-    }
+    };
 
-    //5. Crear una nueva lista con la canción actualizada en estado favorito true
-    const listUpdatedWithSong = playlist.songs.map(song => 
-      song.title === title ? { ...song, favorite: true} : song);
+    //5. Actualizamos la canción
+    song.favorite = true;
 
-    //6. Debemos actualizar la playlist ahora con la canción actualizada
-    const playlistUpdated = { ...playlist, songs: listUpdatedWithSong};
+    return playlist;
 
-    return playlistUpdated;
   };
 
   /**
