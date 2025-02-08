@@ -1,5 +1,5 @@
 //Al código le faltaba la promesa y su resolución, devolvía undefined porque no le estabamos
-//indicando que hacer cuando... 
+//indicando que hacer y cuando
 
 function obtenerUsuario(id) {
     let usuario;
@@ -10,13 +10,16 @@ function obtenerUsuario(id) {
                 resolve(usuario);
             }
         }, 2000);
-
-        return usuario;
     });
 };
 
 obtenerUsuario()
 .then(usuario => obtenerUsuario(usuario));
 
-const usuario = obtenerUsuario(1);
-console.log(usuario); 
+//Ejecución
+async function ejecutar() {
+    const usuario = await obtenerUsuario(1);
+    console.log(usuario);
+}
+
+ejecutar();
