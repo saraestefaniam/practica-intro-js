@@ -164,17 +164,15 @@ const playlist = () => {
     };
 
     //3. Definimos los criterios y que pasa en cada uno
-    if (criterion === title) {
-      let sortedPlaylist = playlist.sort((a, b) => a.songs.title.localeCompare(b.songs.title));
-    } else if (criterion === artist) {
-      let sortedPlaylist = playlist.sort((a, b) => a.songs.artist.localeCompare(b.songs.artis));
-    } else if (criterion === duration) {
-      let sortedPlaylist = playlist.sort((a, b) => a.songs.duration - b.songs.duration);
+    if (criterion === 'title') {
+      playlist.songs.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (criterion === 'artist') {
+      playlist.songs.sort((a, b) => a.artist.localeCompare(b.artist));
+    } else if (criterion === 'duration') {
+      playlist.songs.sort((a, b) => a.duration - b.duration);
     } else { 
       throw new Error('Criterion is not valid')
     };
-
-    return sortedPlaylist;
 
   };
 
