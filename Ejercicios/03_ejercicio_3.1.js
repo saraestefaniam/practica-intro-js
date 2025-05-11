@@ -32,21 +32,3 @@ const transform = (dataRoute) => {
 console.log(transform(input1));
 console.log(transform(input2));
 console.log(transform(input3));
-
-
-// Otra forma de solucionarlo
-
-const transform2 = (dataRoute2) => {
-    let lastElement = dataRoute2.filter((r, index) => index === dataRoute2.length - 1);
-    dataRoute2.pop();
-    let firstString = dataRoute2.join('/');
-    let lastList = [];
-    lastList.push(firstString, lastElement);
-    let theRoute2 = lastList.join('.');
-    
-    return theRoute2;
-};
-
-console.log(transform2(input1));
-console.log(transform2(input2));
-console.log(transform2(input3));

@@ -3,14 +3,14 @@ const input2 = 'variable';
 const input3 = 'pointer';
 
 const reverseStringAndNumOfChar = (input) => {
-    let toList = input.split('');
-    let length = toList.length;
-    let numberOfChar = [];
-    numberOfChar.push(length);
-    let invertList = toList.reverse();
-    invertList.unshift(numberOfChar);
-    let allChars = invertList.join('');
-    const finalString = allChars[0] + ' ' + allChars.slice(1);
+    const toList = input.split('');
+    const length = toList.length; 
+    const numberOfChar = []; 
+    numberOfChar.push(length); 
+    const invertList = toList.reverse(); 
+    invertList.unshift(numberOfChar); 
+    const allChars = invertList.join(''); 
+    const finalString = allChars[0] + ' ' + allChars.slice(1); 
 
     return finalString;
 };

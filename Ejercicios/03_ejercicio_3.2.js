@@ -3,8 +3,8 @@ const secondInput = 1;
 const thirdInput = 11234;
 
 const numberToStringWithDash = (input) => {
-    let inputString = input.toString();
-    let aList = inputString.split('');
+    const inputString = input.toString();
+    const aList = inputString.split('');
     const finalString = aList.join('-');
     return finalString
 
